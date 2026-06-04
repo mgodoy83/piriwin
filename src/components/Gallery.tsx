@@ -5,11 +5,10 @@ import Image from "next/image";
 import { Maximize2 } from "lucide-react";
 
 const galleryImages = [
-  { src: "/images/hero.png", alt: "Piscina Moderna", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
-  { src: "/images/borders.png", alt: "Bordes de Piscina", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
-  { src: "/images/family.png", alt: "Familia en Piscina", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
-  { src: "/images/catalog1.png", alt: "Proyecto Terminado", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
-  { src: "/images/catalog2.png", alt: "Piscina Libre", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
+  { src: "/instalaciones/instalacion1.png", alt: "Instalación 1", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
+  { src: "/instalaciones/instalacion2.png", alt: "Instalación 2", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
+  { src: "/instalaciones/instalacion3.png", alt: "Instalación 3", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
+  { src: "/instalaciones/instalacion4.png", alt: "Instalación 4", colSpan: "md:col-span-3", rowSpan: "md:row-span-1" },
 ];
 
 export default function Gallery() {
