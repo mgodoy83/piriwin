@@ -78,7 +78,7 @@ export default function Catalog() {
                 </div>
                 
                 <a 
-                  href={`https://wa.me/56912345678?text=Hola, me gustaría cotizar el ${model.name} con dimensiones de ${model.size}`}
+                  href={`https://wa.me/56941913009?text=Hola, me gustaría cotizar el ${model.name} con dimensiones de ${model.size}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 bg-slate-50 dark:bg-slate-800 hover:bg-brand-600 dark:hover:bg-brand-500 text-slate-900 dark:text-white hover:text-white py-3 rounded-xl transition-colors font-semibold group/btn"

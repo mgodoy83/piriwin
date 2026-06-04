@@ -32,8 +32,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white text-lg mb-1">Teléfono</h4>
-                  <p className="text-slate-600 dark:text-slate-400">+56 9 1234 5678</p>
-                  <p className="text-slate-600 dark:text-slate-400">+56 2 2345 6789</p>
+                  <p className="text-slate-600 dark:text-slate-400">+56 9 4191 3009</p>
                 </div>
               </div>
               
@@ -136,8 +135,8 @@ export default function Contact() {
       <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex items-center justify-center group">
         <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-75 duration-1000"></div>
         <a 
-          href="https://wa.me/56912345678" 
-          target="_blank" 
+          href="https://wa.me/56941913009" 
+          target="_blank"  
           rel="noopener noreferrer"
           className="relative bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-10"
         >
