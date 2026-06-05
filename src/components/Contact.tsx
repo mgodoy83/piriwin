@@ -1,9 +1,38 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2 } from "lucide-react";
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      await fetch("https://formsubmit.co/ajax/piscinas.piriwin@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
+      });
+      setIsSuccess(true);
+      (e.target as HTMLFormElement).reset();
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contacto" className="py-24 bg-background relative overflow-hidden">
       {/* Background decoration */}
@@ -70,12 +99,17 @@ export default function Contact() {
           >
             <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Envíanos un mensaje</h4>
             
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <input type="hidden" name="_subject" value="Nuevo contacto desde la web de Piriwin!" />
+              <input type="hidden" name="_captcha" value="false" />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nombre completo</label>
                   <input 
                     type="text" 
+                    name="nombre"
+                    required
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
                     placeholder="Ej. Juan Pérez"
                   />
@@ -84,6 +118,8 @@ export default function Contact() {
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Teléfono</label>
                   <input 
                     type="tel" 
+                    name="telefono"
+                    required
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
                     placeholder="+56 9 XXXX XXXX"
                   />
@@ -94,6 +130,8 @@ export default function Contact() {
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Correo electrónico</label>
                 <input 
                   type="email" 
+                  name="email"
+                  required
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
                   placeholder="tucorreo@ejemplo.com"
                 />
@@ -101,7 +139,7 @@ export default function Contact() {
               
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tipo de Proyecto</label>
-                <select className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                <select name="proyecto" className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
                   <option>Instalación de Piscina Nueva</option>
                   <option>Renovación / Revestimiento</option>
                   <option>Bordes de Piscina</option>
@@ -113,18 +151,36 @@ export default function Contact() {
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Mensaje</label>
                 <textarea 
+                  name="mensaje"
                   rows={4}
+                  required
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
                   placeholder="Cuéntanos más sobre tu proyecto..."
                 ></textarea>
               </div>
               
               <button 
-                type="button"
-                className="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-brand-500/40 font-semibold text-lg"
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full flex items-center justify-center gap-2 text-white px-8 py-4 rounded-xl transition-all shadow-lg font-semibold text-lg ${
+                  isSuccess 
+                    ? "bg-green-500 hover:bg-green-600 shadow-green-500/40" 
+                    : "bg-brand-600 hover:bg-brand-500 hover:shadow-brand-500/40 disabled:opacity-70 disabled:cursor-not-allowed"
+                }`}
               >
-                <Send size={20} />
-                Enviar Mensaje
+                {isSubmitting ? (
+                  <span className="animate-pulse">Enviando...</span>
+                ) : isSuccess ? (
+                  <>
+                    <CheckCircle2 size={20} />
+                    ¡Mensaje Enviado!
+                  </>
+                ) : (
+                  <>
+                    <Send size={20} />
+                    Enviar Mensaje
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
