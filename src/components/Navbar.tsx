@@ -22,7 +22,6 @@ export default function Navbar() {
     { name: "Servicios", href: "#servicios" },
     { name: "Modelos", href: "#modelos" },
     { name: "Proyectos", href: "#galeria" },
-    { name: "Contacto", href: "#contacto" },
   ];
 
   return (
@@ -60,10 +59,9 @@ export default function Navbar() {
             ))}
             <a
               href="#contacto"
-              className="flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-full transition-all shadow-lg hover:shadow-brand-500/30 font-medium"
+              className="bg-brand-600 hover:bg-brand-500 text-white px-6 py-2.5 rounded-full transition-all shadow-lg hover:shadow-brand-500/30 font-medium"
             >
-              <Phone size={18} />
-              <span>Cotizar</span>
+              Cotizar
             </a>
           </div>
 
@@ -98,10 +96,9 @@ export default function Navbar() {
           <a
             href="#contacto"
             onClick={() => setMobileMenuOpen(false)}
-            className="mt-4 flex justify-center items-center gap-2 bg-brand-600 text-white px-5 py-3 rounded-xl font-medium"
+            className="mt-4 flex justify-center items-center bg-brand-600 text-white px-5 py-3 rounded-xl font-medium"
           >
-            <Phone size={18} />
-            <span>Cotizar Proyecto</span>
+            Cotizar
           </a>
         </motion.div>
       )}
