@@ -5,34 +5,6 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2 } from "lucide-react";
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    const formData = new FormData(e.currentTarget);
-    
-    try {
-      await fetch("https://formsubmit.co/ajax/piscinas.piriwin@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(formData)),
-      });
-      setIsSuccess(true);
-      (e.target as HTMLFormElement).reset();
-      setTimeout(() => setIsSuccess(false), 5000);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section id="contacto" className="py-24 bg-background relative overflow-hidden">
       {/* Background decoration */}
@@ -71,8 +43,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white text-lg mb-1">Correo Electrónico</h4>
-                  <p className="text-slate-600 dark:text-slate-400">contacto@piriwin.cl</p>
-                  <p className="text-slate-600 dark:text-slate-400">cotizaciones@piriwin.cl</p>
+                  <p className="text-slate-600 dark:text-slate-400">piscinas.piriwin@gmail.com</p>
                 </div>
               </div>
               
@@ -99,9 +70,11 @@ export default function Contact() {
           >
             <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Envíanos un mensaje</h4>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form action="https://formsubmit.co/piscinas.piriwin@gmail.com" method="POST" className="space-y-6">
               <input type="hidden" name="_subject" value="Nuevo contacto desde la web de Piriwin!" />
               <input type="hidden" name="_captcha" value="false" />
+              {/* Esto redirigirá al usuario de vuelta a la web tras enviar el correo */}
+              <input type="hidden" name="_next" value="http://localhost:3000/#contacto" />
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -161,26 +134,10 @@ export default function Contact() {
               
               <button 
                 type="submit"
-                disabled={isSubmitting}
-                className={`w-full flex items-center justify-center gap-2 text-white px-8 py-4 rounded-xl transition-all shadow-lg font-semibold text-lg ${
-                  isSuccess 
-                    ? "bg-green-500 hover:bg-green-600 shadow-green-500/40" 
-                    : "bg-brand-600 hover:bg-brand-500 hover:shadow-brand-500/40 disabled:opacity-70 disabled:cursor-not-allowed"
-                }`}
+                className="w-full flex items-center justify-center gap-2 text-white px-8 py-4 rounded-xl transition-all shadow-lg font-semibold text-lg bg-brand-600 hover:bg-brand-500 hover:shadow-brand-500/40"
               >
-                {isSubmitting ? (
-                  <span className="animate-pulse">Enviando...</span>
-                ) : isSuccess ? (
-                  <>
-                    <CheckCircle2 size={20} />
-                    ¡Mensaje Enviado!
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    Enviar Mensaje
-                  </>
-                )}
+                <Send size={20} />
+                Enviar Mensaje
               </button>
             </form>
           </motion.div>
