@@ -79,7 +79,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 text-slate-500 text-sm">
             <span>Desarrollado con</span>
             <Waves size={16} className="text-brand-500" />
-            <span>por Antigravity</span>
+            <span>por WebHook</span>
           </div>
         </div>
       </div>
