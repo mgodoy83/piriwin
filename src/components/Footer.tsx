@@ -66,7 +66,7 @@ export default function Footer() {
               </li>
               <li className="text-slate-400 text-sm">
                 <strong className="block text-slate-300 mb-1">Soporte y Garantías:</strong>
-                soporte@piriwin.cl
+                <a href="mailto:piscinas.piriwin@gmail.com" className="hover:text-brand-400 transition-colors">piscinas.piriwin@gmail.com</a>
               </li>
             </ul>
           </div>
