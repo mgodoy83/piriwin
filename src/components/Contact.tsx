@@ -33,7 +33,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white text-lg mb-1">Teléfono</h4>
-                  <p className="text-slate-600 dark:text-slate-400">+56 9 4191 3009</p>
+                  <a href="tel:+56941913009" className="text-slate-600 dark:text-slate-400 hover:text-brand-500 transition-colors block">+56 9 4191 3009</a>
                 </div>
               </div>
               
@@ -43,7 +43,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white text-lg mb-1">Correo Electrónico</h4>
-                  <p className="text-slate-600 dark:text-slate-400">piscinas.piriwin@gmail.com</p>
+                  <a href="mailto:piscinas.piriwin@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-brand-500 transition-colors block">piscinas.piriwin@gmail.com</a>
                 </div>
               </div>
               
